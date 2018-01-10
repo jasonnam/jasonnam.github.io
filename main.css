@@ -1,0 +1,19 @@
+body {
+  background-color: #f6f6f6;
+}
+
+p {
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+.container {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: white;
+  max-width: 640px;
+  min-height: 100vh;
+}
+
+.fa {
+  margin-right: 6px;
+}
