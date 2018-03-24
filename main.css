@@ -17,3 +17,13 @@ p {
 .fa {
   margin-right: 6px;
 }
+
+/* Badge */
+.badge {
+  padding: 9px 12px 9px 12px;
+  font-size: 1em;
+}
+
+.badge > svg {
+  margin-right: 6px;
+}
