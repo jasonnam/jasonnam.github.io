@@ -1,29 +1,386 @@
-body {
-  background-color: #f6f6f6;
+/* ==========================================================================
+   Design System - jasonnam.com
+   ========================================================================== */
+
+:root {
+  /* Dark Mode Default Tokens */
+  --bg-base: #08090d;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  --tile-bg: rgba(255, 255, 255, 0.04);
+  --tile-border: rgba(255, 255, 255, 0.08);
+  --tile-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.45);
+  
+  --control-bg: rgba(255, 255, 255, 0.05);
+  --control-border: rgba(255, 255, 255, 0.1);
+  --control-hover: rgba(255, 255, 255, 0.12);
+  
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  
+  --radius-tile: 20px;
+  --radius-pill: 9999px;
+  
+  --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-p {
-  font-size: 1.4em;
+/* Light Theme Variables */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-base: #f8fafc;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    
+    --tile-bg: rgba(255, 255, 255, 0.85);
+    --tile-border: rgba(15, 23, 42, 0.08);
+    --tile-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.05), 0 3px 8px -2px rgba(15, 23, 42, 0.02);
+    
+    --control-bg: rgba(15, 23, 42, 0.04);
+    --control-border: rgba(15, 23, 42, 0.08);
+    --control-hover: rgba(15, 23, 42, 0.08);
+  }
+}
+
+html[data-theme="light"] {
+  --bg-base: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  
+  --tile-bg: rgba(255, 255, 255, 0.85);
+  --tile-border: rgba(15, 23, 42, 0.08);
+  --tile-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.05), 0 3px 8px -2px rgba(15, 23, 42, 0.02);
+  
+  --control-bg: rgba(15, 23, 42, 0.04);
+  --control-border: rgba(15, 23, 42, 0.08);
+  --control-hover: rgba(15, 23, 42, 0.08);
+}
+
+/* Base resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
+  overflow: hidden;
+  overscroll-behavior: none;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Accessibility Focus Rings (WCAG AAA) */
+:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Canvas & Texture
+   ========================================================================== */
+
+/* Backdrop layers are anchored to the LARGE viewport (100lvh) so they keep
+   painting behind Safari's collapsible toolbars and the home indicator. */
+#glow-canvas, .noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100lvh;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+#glow-canvas {
+  z-index: 1;
+  opacity: 0.95;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: opacity 0.35s ease;
+}
+
+html[data-theme="light"] #glow-canvas {
+  opacity: 0.85;
+}
+
+.noise-overlay {
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: 2;
+}
+
+/* ==========================================================================
+   Top Header Controls (Language - 36px Height)
+   ========================================================================== */
+
+.top-bar {
+  position: fixed;
+  top: calc(1.5rem + env(safe-area-inset-top, 0px));
+  right: calc(1.5rem + env(safe-area-inset-right, 0px));
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.segmented-control {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  background: var(--control-bg);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  gap: 2px;
+}
+
+.lang-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  height: 100%;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  transition: var(--transition-smooth);
+  box-sizing: border-box;
+  line-height: 1;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.lang-link:hover {
+  color: var(--text-primary);
+}
+
+.lang-link.active {
+  background: var(--control-hover);
+  color: var(--text-primary);
   font-weight: 500;
 }
 
-.container {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  background-color: white;
-  max-width: 640px;
-  min-height: 100vh;
+/* ==========================================================================
+   Bottom Social Links Bar (True Inset Dead-Center, Static Hover)
+   ========================================================================== */
+
+.bottom-social-bar {
+  position: fixed;
+  bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: max-content;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0;
+  animation: fadeInOpacity 0.8s ease forwards;
 }
 
-.fa {
-  margin-right: 6px;
+@keyframes fadeInOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-/* Badge */
-.badge {
-  padding: 9px 12px 9px 12px;
-  font-size: 1em;
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  background: var(--control-bg);
+  border: 1px solid var(--control-border);
+  color: var(--text-secondary);
+  text-decoration: none;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  box-sizing: border-box;
 }
 
-.badge > svg {
-  margin-right: 6px;
+.social-link:hover {
+  background: var(--control-hover);
+  color: var(--text-primary);
+}
+
+.social-link svg {
+  display: block;
+}
+
+/* ==========================================================================
+   Main Content - True Vertical & Horizontal Dead-Center
+   ========================================================================== */
+
+.page-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2rem;
+  padding: calc(1.5rem + env(safe-area-inset-top, 0px)) calc(1.5rem + env(safe-area-inset-right, 0px)) calc(1.5rem + env(safe-area-inset-bottom, 0px)) calc(1.5rem + env(safe-area-inset-left, 0px));
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: fadeInOpacity 0.8s ease forwards;
+}
+
+/* Name Title */
+.hero-section {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.name-title {
+  font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  line-height: 1.2;
+  text-align: center;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+}
+
+@media (prefers-color-scheme: light) {
+  .name-title {
+    text-shadow: none;
+  }
+}
+
+html[data-theme="light"] .name-title {
+  text-shadow: none;
+}
+
+/* App Icon Tiles - Pure & Clean Static Presentation */
+.tiles-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.85rem;
+  width: 100%;
+}
+
+.app-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  border-radius: var(--radius-tile);
+}
+
+.tile-icon-frame {
+  position: relative;
+  width: 74px;
+  height: 74px;
+  border-radius: var(--radius-tile);
+  background: var(--tile-bg);
+  border: 1px solid var(--tile-border);
+  box-shadow: var(--tile-shadow);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tile-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-tile);
+  display: block;
+}
+
+.tile-label {
+  font-size: 0.84rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* ==========================================================================
+   Reduced Motion Accessibility Preference
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html, body, .page-container, .bottom-social-bar, #glow-canvas, .lang-link, .social-link {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Responsive */
+@media (max-width: 540px) {
+  .top-bar {
+    top: calc(1.25rem + env(safe-area-inset-top, 0px));
+    right: calc(1.25rem + env(safe-area-inset-right, 0px));
+  }
+  .bottom-social-bar {
+    bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  }
+  .page-container {
+    gap: 1.75rem;
+  }
+  .tiles-row {
+    gap: 1.5rem;
+  }
+  .tile-icon-frame {
+    width: 68px;
+    height: 68px;
+  }
+  .name-title {
+    font-size: 1.35rem;
+  }
 }
