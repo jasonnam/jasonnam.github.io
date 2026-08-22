@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>개인정보 처리방침 - Porcelain</title>
+  <meta name="description" content="Porcelain의 개인정보 처리방침입니다. Porcelain은 사용자의 어떠한 개인정보, 소스 코드, 자격 증명도 수집, 추적 또는 공유하지 않습니다." />
+
+  <!-- Canonical & Multi-Language SEO -->
+  <link rel="canonical" href="https://jasonnam.com/apps/porcelain/privacy-policy/ko.html" />
+  <link rel="alternate" hreflang="en" href="https://jasonnam.com/apps/porcelain/privacy-policy/" />
+  <link rel="alternate" hreflang="ko" href="https://jasonnam.com/apps/porcelain/privacy-policy/ko.html" />
+  <link rel="alternate" hreflang="x-default" href="https://jasonnam.com/apps/porcelain/privacy-policy/" />
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png" />
+  <link rel="shortcut icon" href="../../../favicon.ico" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+
+  <!-- Open Graph / Twitter Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="개인정보 처리방침 - Porcelain" />
+  <meta property="og:description" content="Porcelain은 개인정보, 코드, 자격 증명을 수집하거나 공유하지 않습니다." />
+  <meta property="og:image" content="https://jasonnam.com/apps/porcelain/assets/icon.png" />
+  <meta property="og:url" content="https://jasonnam.com/apps/porcelain/privacy-policy/ko.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="개인정보 처리방침 - Porcelain" />
+  <meta name="twitter:description" content="Porcelain은 개인정보, 코드, 자격 증명을 수집하거나 공유하지 않습니다." />
+  <meta name="twitter:image" content="https://jasonnam.com/apps/porcelain/assets/icon.png" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: #111;
+      background-color: #fff;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    a:focus-visible {
+      outline: 2px solid #0066cc;
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    header,
+    main,
+    footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Top Bar */
+    [data-section="top-bar"] {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.25rem;
+      padding-bottom: 0.5rem;
+    }
+
+    [data-slot="back-link"] {
+      font-size: 0.875rem;
+      text-decoration: none;
+      color: #555;
+    }
+
+    [data-slot="back-link"]:hover {
+      text-decoration: underline;
+    }
+
+    [data-slot="language-switcher"] {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.875rem;
+    }
+
+    [data-slot="language-switcher"] a {
+      text-decoration: none;
+      color: #555;
+    }
+
+    [data-slot="language-switcher"] a:hover {
+      text-decoration: underline;
+    }
+
+    [data-slot="language-switcher"] a[aria-current="page"] {
+      font-weight: 600;
+      color: #111;
+      text-decoration: underline;
+    }
+
+    /* Content */
+    main {
+      padding: 3.5rem 0 5rem;
+      max-width: 720px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      line-height: 1.2;
+      margin: 0 0 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin: 2rem 0 0.75rem;
+      font-weight: 600;
+    }
+
+    p, ul {
+      font-size: 1.05rem;
+      color: #555;
+      margin: 0 0 1.25rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 2rem;
+      padding-bottom: 2.5rem;
+      border-top: 1px solid #e5e5e5;
+      font-size: 0.875rem;
+      color: #555;
+    }
+
+    footer nav {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    footer p[data-field="copyright"] {
+      margin: 0;
+    }
+
+    /* Clean Dark Mode Support */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #e5e5e5;
+      }
+
+      p, ul,
+      footer,
+      [data-slot="back-link"],
+      [data-slot="language-switcher"] a {
+        color: #a0a0a0;
+      }
+
+      [data-slot="language-switcher"] a[aria-current="page"] {
+        color: #ffffff;
+      }
+
+      footer {
+        border-color: #2a2a2a;
+      }
+
+      a:focus-visible {
+        outline-color: #4da3ff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header data-section="top-bar">
+    <a href="../ko.html" data-slot="back-link">&larr; Porcelain</a>
+    <nav data-slot="language-switcher" aria-label="언어 선택">
+      <a href="index.html" data-field="lang-link">English</a>
+      <a href="ko.html" data-field="lang-link" aria-current="page">한국어</a>
+    </nav>
+  </header>
+
+  <main role="main">
+    <h1>개인정보 처리방침</h1>
+    <p>Porcelain은 사용자의 어떠한 개인정보, 저장소 내용, 소스 코드, 자격 증명도 수집, 저장, 추적 또는 공유하지 않습니다.</p>
+    
+    <h2>1. 로컬 저장 및 오프라인 우선 원칙</h2>
+    <p>모든 저장소 파일, Git 객체, 커밋 기록, 브랜치 및 Diff 연산은 사용자의 로컬 기기 내에서만 처리됩니다. Porcelain은 사용자의 코드를 외부 중간 서버에 전송하거나 저장하지 않습니다.</p>
+
+    <h2>2. 키체인 보안 및 자격 증명</h2>
+    <p>개인 액세스 토큰 및 SSH 개인 키는 Apple의 기기 내 키체인 서비스(<code>kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly</code>)를 통해 암호화되어 보관됩니다. 자격 증명은 설정된 Git 원격 서버와의 직접 인증 시에만 사용됩니다.</p>
+
+    <h2>3. 직접 원격 통신</h2>
+    <p>저장소를 Clone, Fetch, Pull, Push할 때 Porcelain은 사용자가 설정한 Git 서비스(GitHub, GitLab, Bitbucket 또는 자체 구축 서버)와 HTTPS 또는 SSH를 통해 직접 통신하며, 제3자 프록시 서버를 경유하지 않습니다.</p>
+
+    <h2>4. 사용자 추적 및 텔레메트리 부재</h2>
+    <p>Porcelain에는 어떠한 분석 도구, 트래킹 스크립트, 광고 프레임워크도 포함되어 있지 않습니다. 사용자의 작업 내용과 사용 습관은 온전히 보호됩니다.</p>
+  </main>
+
+  <footer data-section="footer">
+    <nav data-slot="footer-nav">
+      <a href="../ko.html" data-field="footer-link">홈</a>
+      <a href="https://github.com/jasonnam/porcelain" target="_blank" rel="noopener noreferrer" data-field="footer-link">GitHub</a>
+    </nav>
+    <p data-field="copyright">&copy; 2026 Jason Nam. All rights reserved.</p>
+  </footer>
+</body>
+</html>

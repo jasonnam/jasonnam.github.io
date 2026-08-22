@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Porcelain - iOS 및 macOS를 위한 네이티브 Git 클라이언트</title>
+  <meta name="description" content="Porcelain은 iPhone, iPad, Mac을 위해 설계된 빠르고 깔끔한 네이티브 Git 클라이언트입니다. 스테이징, 통합 Diff 뷰어, 브랜치 관리 및 기기 내 키체인 기반 보안을 제공합니다." />
+  <meta name="keywords" content="Porcelain, Git 클라이언트, iOS Git, macOS Git, 모바일 깃, 아이폰 깃, 아이패드 깃, libgit2, SSH Git 클라이언트, 깃허브, 깃랩" />
+
+  <!-- Canonical & Multi-Language SEO -->
+  <link rel="canonical" href="https://jasonnam.com/apps/porcelain/ko.html" />
+  <link rel="alternate" hreflang="en" href="https://jasonnam.com/apps/porcelain/" />
+  <link rel="alternate" hreflang="ko" href="https://jasonnam.com/apps/porcelain/ko.html" />
+  <link rel="alternate" hreflang="x-default" href="https://jasonnam.com/apps/porcelain/" />
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
+  <link rel="shortcut icon" href="../../favicon.ico" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+
+  <!-- Open Graph / Facebook Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Porcelain - 네이티브 Git 클라이언트" />
+  <meta property="og:description" content="iPhone, iPad, Mac을 위한 빠르고 깔끔한 네이티브 Git 클라이언트입니다." />
+  <meta property="og:image" content="https://jasonnam.com/apps/porcelain/assets/icon.png" />
+  <meta property="og:url" content="https://jasonnam.com/apps/porcelain/ko.html" />
+  <meta property="og:site_name" content="Porcelain" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <!-- Twitter / X Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@seokhyeoneee" />
+  <meta name="twitter:creator" content="@seokhyeoneee" />
+  <meta name="twitter:title" content="Porcelain - 네이티브 Git 클라이언트" />
+  <meta name="twitter:description" content="iPhone, iPad, Mac을 위한 빠르고 깔끔한 네이티브 Git 클라이언트." />
+  <meta name="twitter:image" content="https://jasonnam.com/apps/porcelain/assets/icon.png" />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Porcelain",
+        "description": "Porcelain은 iPhone, iPad, Mac을 위해 설계된 빠르고 깔끔한 네이티브 Git 클라이언트입니다. 스테이징, 통합 Diff 뷰어, 브랜치 관리 및 기기 내 키체인 기반 보안을 제공합니다.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "iOS, iPadOS, macOS",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "url": "https://jasonnam.com/apps/porcelain/ko.html",
+        "author": {
+          "@type": "Person",
+          "name": "남석현 (Jason Nam)",
+          "url": "https://jasonnam.com/ko.html"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Porcelain을 사용하려면 계정이 필요한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "별도의 회원가입이나 계정이 필요하지 않습니다. 기존 Git 호스트(GitHub, GitLab, Bitbucket 또는 자체 서버)와 직접 연결하여 바로 사용할 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "SSH 키와 개인 액세스 토큰은 어떻게 저장되나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "모든 자격 증명은 Apple 키체인 서비스(kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly)를 통해 기기 내 하드웨어에 안전하게 암호화되어 보관되며, 외부로 전송되지 않습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "외부 텍스트 편집기나 앱에서 저장소 파일을 편집할 수 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "네. iOS 파일 앱 및 파일 직접 열기(In-Place Open)를 지원하므로 다른 코드 편집기 앱에서 저장소 파일을 바로 열고 편집할 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "오프라인 상태에서도 동작하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "네. 커밋, 변경 사항 Diff 확인, 스테이징, 브랜치 전환 등 모든 로컬 Git 작업은 오프라인에서 100% 정상 작동합니다."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: #111;
+      background-color: #fff;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 2px solid #0066cc;
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    header,
+    main,
+    footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Top Bar */
+    [data-section="top-bar"] {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.25rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .home-link {
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: #555;
+    }
+
+    .home-link:hover {
+      text-decoration: underline;
+    }
+
+    [data-slot="language-switcher"] {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.875rem;
+    }
+
+    [data-slot="language-switcher"] a {
+      text-decoration: none;
+      color: #555;
+    }
+
+    [data-slot="language-switcher"] a:hover {
+      text-decoration: underline;
+    }
+
+    [data-slot="language-switcher"] a[aria-current="page"] {
+      font-weight: 600;
+      color: #111;
+      text-decoration: underline;
+    }
+
+    /* Sections */
+    section {
+      padding: 2.75rem 0;
+    }
+
+    /* Hero */
+    #hero {
+      text-align: center;
+      padding-bottom: 1.5rem;
+    }
+
+    [data-slot="hero-icon"] img {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    #hero h1[data-field="title"] {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      line-height: 1.2;
+      margin: 1rem 0 0.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    #hero p[data-field="description"] {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      color: #555;
+      margin: 0 auto;
+      max-width: 580px;
+    }
+
+    .platform-badges {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 0.5rem;
+    }
+
+    [data-slot="store-buttons"] {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    [data-slot="store-buttons"] a {
+      display: inline-flex;
+      text-decoration: none;
+    }
+
+    /* Screenshots */
+    [data-slot="screenshots-list"] {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    [data-component="screenshot-item"] {
+      margin: 0;
+    }
+
+    [data-component="screenshot-item"] img {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      aspect-ratio: 280 / 608;
+      border-radius: 16px;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    [data-field="screenshot-caption"] {
+      margin-top: 0.6rem;
+      font-size: 0.875rem;
+      color: #555;
+      font-weight: 500;
+    }
+
+    /* Features */
+    #features {
+      padding-top: 1.5rem;
+    }
+
+    section h2[data-field="section-title"],
+    #download h2[data-field="cta-title"] {
+      font-size: clamp(1.5rem, 3vw, 1.875rem);
+      line-height: 1.25;
+      margin: 0 0 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    [data-slot="feature-list"] {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.75rem 1.5rem;
+    }
+
+    [data-component="feature-item"] h3[data-field="feature-title"] {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0 0 0.35rem;
+      line-height: 1.3;
+    }
+
+    [data-component="feature-item"] p[data-field="feature-description"] {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: #555;
+      margin: 0;
+    }
+
+    /* Privacy Promise Box */
+    #privacy-promise {
+      background-color: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 1.75rem 1.5rem;
+      margin: 1rem 0;
+    }
+
+    #privacy-promise h3 {
+      font-size: 1.15rem;
+      margin: 0 0 0.5rem;
+    }
+
+    #privacy-promise p {
+      font-size: 0.95rem;
+      color: #555;
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    /* FAQ */
+    #faq details {
+      border-bottom: 1px solid #eee;
+      padding: 1rem 0;
+    }
+
+    #faq summary {
+      font-weight: 600;
+      font-size: 1.05rem;
+      cursor: pointer;
+      list-style-position: inside;
+      padding: 0.25rem 0;
+    }
+
+    #faq details p {
+      font-size: 0.95rem;
+      color: #555;
+      margin: 0.75rem 0 0;
+      line-height: 1.55;
+    }
+
+    /* Download CTA */
+    #download {
+      text-align: center;
+    }
+
+    #download h2[data-field="cta-title"] {
+      margin: 0 0 0.5rem;
+    }
+
+    #download p[data-field="cta-description"] {
+      font-size: 1.05rem;
+      color: #555;
+      margin: 0 0 1.25rem;
+    }
+
+    /* Footer */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 2rem;
+      padding-bottom: 2.5rem;
+      border-top: 1px solid #e5e5e5;
+      font-size: 0.875rem;
+      color: #555;
+    }
+
+    footer nav {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    footer p[data-field="copyright"] {
+      margin: 0;
+    }
+
+    /* Clean Dark Mode Support */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #e5e5e5;
+      }
+
+      .home-link,
+      #hero p[data-field="description"],
+      .platform-badges,
+      [data-field="screenshot-caption"],
+      [data-component="feature-item"] p[data-field="feature-description"],
+      #privacy-promise p,
+      #faq details p,
+      #download p[data-field="cta-description"],
+      footer,
+      [data-slot="language-switcher"] a {
+        color: #a0a0a0;
+      }
+
+      [data-slot="language-switcher"] a[aria-current="page"] {
+        color: #ffffff;
+      }
+
+      #privacy-promise {
+        background-color: #1a1a1a;
+        border-color: #2a2a2a;
+      }
+
+      #faq details,
+      footer {
+        border-color: #2a2a2a;
+      }
+
+      [data-component="screenshot-item"] img {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      }
+
+      a:focus-visible,
+      summary:focus-visible {
+        outline-color: #4da3ff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Bar Navigation -->
+  <header data-section="top-bar">
+    <a href="../../ko.html" class="home-link">&larr; 남석현 (Jason Nam)</a>
+    <nav data-slot="language-switcher" aria-label="언어 선택">
+      <a href="index.html" data-field="lang-link">English</a>
+      <a href="ko.html" data-field="lang-link" aria-current="page">한국어</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero with App Preview -->
+    <section id="hero" data-section="hero">
+      <div data-slot="hero-icon">
+        <img src="assets/icon.png" alt="Porcelain 앱 아이콘" width="96" height="96" data-field="app-icon-large" />
+      </div>
+      <h1 data-field="title">Porcelain</h1>
+      <p data-field="description">iOS 및 macOS를 위한 빠르고 깔끔한 네이티브 Git 클라이언트</p>
+      <div class="platform-badges">iPhone • iPad • Mac 지원</div>
+
+      <div data-slot="store-buttons">
+        <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" data-field="app-store-button" aria-label="App Store에서 Porcelain 다운로드">
+          <img src="assets/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" height="42" width="126" />
+        </a>
+      </div>
+
+      <!-- App Preview Screenshots Grid -->
+      <div data-slot="screenshots-list">
+        <figure data-component="screenshot-item">
+          <img src="assets/iPhone%2017%20Pro%20Max-0.png" alt="저장소 허브" width="280" height="608" data-field="screenshot-image" />
+          <figcaption data-field="screenshot-caption">저장소 허브</figcaption>
+        </figure>
+        <figure data-component="screenshot-item">
+          <img src="assets/iPhone%2017%20Pro%20Max-1.png" alt="파일 트리 탐색" width="280" height="608" data-field="screenshot-image" />
+          <figcaption data-field="screenshot-caption">파일 트리 탐색</figcaption>
+        </figure>
+        <figure data-component="screenshot-item">
+          <img src="assets/iPhone%2017%20Pro%20Max-3.png" alt="인터랙티브 스테이징" width="280" height="608" data-field="screenshot-image" loading="lazy" />
+          <figcaption data-field="screenshot-caption">인터랙티브 스테이징</figcaption>
+        </figure>
+        <figure data-component="screenshot-item">
+          <img src="assets/iPhone%2017%20Pro%20Max-4.png" alt="통합 Diff 뷰어" width="280" height="608" data-field="screenshot-image" loading="lazy" />
+          <figcaption data-field="screenshot-caption">통합 Diff 뷰어</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Key Features -->
+    <section id="features" data-section="features">
+      <h2 data-field="section-title">주요 기능</h2>
+      <div data-slot="feature-list">
+        <article data-component="feature-item">
+          <h3 data-field="feature-title">풀 네이티브 Git 엔진</h3>
+          <p data-field="feature-description">libgit2 기반으로 모바일 및 데스크톱 환경에서 빠르고 안정적인 오프라인 우선 버전 관리를 제공합니다.</p>
+        </article>
+        <article data-component="feature-item">
+          <h3 data-field="feature-title">통합 Diff 뷰어</h3>
+          <p data-field="feature-description">나란히 배치된 라인 넘버 거터, 헝크 헤더 및 추가/삭제 구문 강조를 통해 코드 변경 사항을 손쉽게 검토합니다.</p>
+        </article>
+        <article data-component="feature-item">
+          <h3 data-field="feature-title">인터랙티브 스테이징 영역</h3>
+          <p data-field="feature-description">원탭 제스처로 개별 파일을 스테이징/언스테이징하고 실시간 스테이징 개수를 확인하며 커밋합니다.</p>
+        </article>
+        <article data-component="feature-item">
+          <h3 data-field="feature-title">브랜치 관리 및 전환</h3>
+          <p data-field="feature-description">로컬 및 원격 추적 브랜치를 생성하고 전환하며, 커밋되지 않은 변경 사항에 대한 안전 경고를 제공합니다.</p>
+        </article>
+        <article data-component="feature-item">
+          <h3 data-field="feature-title">원격 동기화 & 분기 탈출</h3>
+          <p data-field="feature-description">HTTPS 또는 SSH로 Fetch, Pull, Push를 실행하며 Non-fast-forward 충돌 시 안전한 분기 탈출 옵션을 지원합니다.</p>
+        </article>
+        <article data-component="feature-item">
+          <h3 data-field="feature-title">기기 내 키체인 기반 보안</h3>
+          <p data-field="feature-description">개인 액세스 토큰 및 SSH 키가 하드웨어 키체인에 안전하게 저장되며 기기 외부로 절대 유출되지 않습니다.</p>
+        </article>
+        <article data-component="feature-item">
+          <h3 data-field="feature-title">iOS 파일 앱 연동</h3>
+          <p data-field="feature-description">외부 코드 편집기 및 텍스트 앱에서 저장소 작업 트리 파일에 직접 접근하여 편집할 수 있습니다.</p>
+        </article>
+        <article data-component="feature-item">
+          <h3 data-field="feature-title">유니버설 네이티브 경험</h3>
+          <p data-field="feature-description">iPhone의 컴팩트 내비게이션, iPad의 3열 스플릿 뷰, macOS의 풀 데스크톱 메뉴를 완벽하게 지원합니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section id="privacy-section">
+      <div id="privacy-promise">
+        <h3>철저한 개인정보 보호</h3>
+        <p>Porcelain은 표준 HTTPS 및 SSH 프로토콜을 통해 Git 서버와 직접 통신합니다. 제3자 서버, 분석 도구, 사용자 추적 및 데이터 수집이 전혀 없습니다.</p>
+      </div>
+    </section>
+
+    <!-- Frequently Asked Questions -->
+    <section id="faq" data-section="faq">
+      <h2 data-field="section-title">자주 묻는 질문</h2>
+      <details>
+        <summary>Porcelain을 사용하려면 계정이 필요한가요?</summary>
+        <p>계정이나 회원가입이 필요하지 않습니다. 오픈소스 저장소를 즉시 클론하거나 기존 토큰/SSH 키로 비공개 저장소에 연결할 수 있습니다.</p>
+      </details>
+      <details>
+        <summary>SSH 키와 토큰은 어떻게 보호되나요?</summary>
+        <p>모든 자격 증명은 Apple 키체인(kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly)을 통해 기기 하드웨어 내에서 안전하게 보호됩니다.</p>
+      </details>
+      <details>
+        <summary>다른 텍스트 편집기에서 파일을 열 수 있나요?</summary>
+        <p>네. iOS 파일 앱 및 파일 직접 열기를 완벽 지원하므로 다른 앱에서 저장소 내 파일을 직접 열고 편집할 수 있습니다.</p>
+      </details>
+      <details>
+        <summary>오프라인 상태에서도 작동하나요?</summary>
+        <p>네. Diff 확인, 스테이징, 커밋, 브랜치 관리, 커밋 로그 탐색 등 모든 로컬 Git 작업은 오프라인에서 동작합니다.</p>
+      </details>
+      <details>
+        <summary>어떤 Git 호스팅 서비스를 지원하나요?</summary>
+        <p>GitHub, GitLab, Bitbucket, Codeberg, Forgejo, Gitea 및 표준 HTTPS/SSH로 접근 가능한 모든 자체 구축 Git 서버를 지원합니다.</p>
+      </details>
+    </section>
+
+    <!-- Download Call to Action -->
+    <section id="download" data-section="download">
+      <h2 data-field="cta-title">지금 Porcelain을 만나보세요</h2>
+      <p data-field="cta-description">iPhone, iPad, Mac용 App Store에서 만나보실 수 있습니다.</p>
+      <div data-slot="store-buttons">
+        <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" data-field="app-store-button" aria-label="App Store에서 Porcelain 다운로드">
+          <img src="assets/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" height="42" width="126" />
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer data-section="footer">
+    <nav data-slot="footer-nav">
+      <a href="../../ko.html" data-field="footer-link">남석현 (Jason Nam)</a>
+      <a href="privacy-policy/ko.html" data-field="footer-link">개인정보 처리방침</a>
+      <a href="https://github.com/jasonnam/porcelain" target="_blank" rel="noopener noreferrer" data-field="footer-link">GitHub</a>
+      <a href="mailto:contact@jasonnam.com" data-field="footer-link">고객 지원</a>
+    </nav>
+    <p data-field="copyright">&copy; 2026 Jason Nam. All rights reserved.</p>
+  </footer>
+</body>
+</html>

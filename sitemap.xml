@@ -19,4 +19,40 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://jasonnam.com/apps/porcelain/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasonnam.com/apps/porcelain/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://jasonnam.com/apps/porcelain/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jasonnam.com/apps/porcelain/"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://jasonnam.com/apps/porcelain/ko.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasonnam.com/apps/porcelain/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://jasonnam.com/apps/porcelain/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jasonnam.com/apps/porcelain/"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jasonnam.com/apps/porcelain/privacy-policy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasonnam.com/apps/porcelain/privacy-policy/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://jasonnam.com/apps/porcelain/privacy-policy/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jasonnam.com/apps/porcelain/privacy-policy/"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jasonnam.com/apps/porcelain/privacy-policy/ko.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasonnam.com/apps/porcelain/privacy-policy/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://jasonnam.com/apps/porcelain/privacy-policy/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jasonnam.com/apps/porcelain/privacy-policy/"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
