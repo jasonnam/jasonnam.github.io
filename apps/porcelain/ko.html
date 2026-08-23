@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Porcelain - iOS 및 macOS를 위한 네이티브 Git 클라이언트</title>
   <meta name="description" content="Porcelain은 iPhone, iPad, Mac을 위해 설계된 빠르고 깔끔한 네이티브 Git 클라이언트입니다. 스테이징, 통합 Diff 뷰어, 브랜치 관리 및 기기 내 키체인 기반 보안을 제공합니다." />
-  <meta name="keywords" content="Porcelain, Git 클라이언트, iOS Git, macOS Git, 모바일 깃, 아이폰 깃, 아이패드 깃, libgit2, SSH Git 클라이언트, 깃허브, 깃랩" />
+  <meta name="keywords" content="Porcelain, Git 클라이언트, iOS Git, macOS Git, 모바일 깃, 아이폰 깃, 아이패드 깃, libgit2, 깃허브, 깃랩" />
 
   <!-- Canonical & Multi-Language SEO -->
   <link rel="canonical" href="https://jasonnam.com/apps/porcelain/ko.html" />
@@ -75,7 +75,7 @@
           },
           {
             "@type": "Question",
-            "name": "SSH 키와 개인 액세스 토큰은 어떻게 저장되나요?",
+            "name": "개인 액세스 토큰과 자격 증명은 어떻게 저장되나요?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "모든 자격 증명은 Apple 키체인 서비스(kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly)를 통해 기기 내 하드웨어에 안전하게 암호화되어 보관되며, 외부로 전송되지 않습니다."
@@ -494,11 +494,11 @@
         </article>
         <article data-component="feature-item">
           <h3 data-field="feature-title">원격 동기화 & 분기 탈출</h3>
-          <p data-field="feature-description">HTTPS 또는 SSH로 Fetch, Pull, Push를 실행하며 Non-fast-forward 충돌 시 안전한 분기 탈출 옵션을 지원합니다.</p>
+          <p data-field="feature-description">HTTPS로 Fetch, Pull, Push를 실행하며 Non-fast-forward 충돌 시 안전한 분기 탈출 옵션을 지원합니다.</p>
         </article>
         <article data-component="feature-item">
           <h3 data-field="feature-title">기기 내 키체인 기반 보안</h3>
-          <p data-field="feature-description">개인 액세스 토큰 및 SSH 키가 하드웨어 키체인에 안전하게 저장되며 기기 외부로 절대 유출되지 않습니다.</p>
+          <p data-field="feature-description">개인 액세스 토큰 및 자격 증명이 하드웨어 키체인에 안전하게 저장되며 기기 외부로 절대 유출되지 않습니다.</p>
         </article>
         <article data-component="feature-item">
           <h3 data-field="feature-title">iOS 파일 앱 연동</h3>
@@ -515,7 +515,7 @@
     <section id="privacy-section">
       <div id="privacy-promise">
         <h3>철저한 개인정보 보호</h3>
-        <p>Porcelain은 표준 HTTPS 및 SSH 프로토콜을 통해 Git 서버와 직접 통신합니다. 제3자 서버, 분석 도구, 사용자 추적 및 데이터 수집이 전혀 없습니다.</p>
+        <p>Porcelain은 표준 HTTPS 프로토콜을 통해 Git 서버와 직접 통신합니다. 제3자 서버, 분석 도구, 사용자 추적 및 데이터 수집이 전혀 없습니다.</p>
       </div>
     </section>
 
@@ -524,10 +524,10 @@
       <h2 data-field="section-title">자주 묻는 질문</h2>
       <details>
         <summary>Porcelain을 사용하려면 계정이 필요한가요?</summary>
-        <p>계정이나 회원가입이 필요하지 않습니다. 오픈소스 저장소를 즉시 클론하거나 기존 토큰/SSH 키로 비공개 저장소에 연결할 수 있습니다.</p>
+        <p>계정이나 회원가입이 필요하지 않습니다. 오픈소스 저장소를 즉시 클론하거나 개인 액세스 토큰으로 비공개 저장소에 연결할 수 있습니다.</p>
       </details>
       <details>
-        <summary>SSH 키와 토큰은 어떻게 보호되나요?</summary>
+        <summary>토큰과 자격 증명은 어떻게 보호되나요?</summary>
         <p>모든 자격 증명은 Apple 키체인(kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly)을 통해 기기 하드웨어 내에서 안전하게 보호됩니다.</p>
       </details>
       <details>
@@ -540,7 +540,7 @@
       </details>
       <details>
         <summary>어떤 Git 호스팅 서비스를 지원하나요?</summary>
-        <p>GitHub, GitLab, Bitbucket, Codeberg, Forgejo, Gitea 및 표준 HTTPS/SSH로 접근 가능한 모든 자체 구축 Git 서버를 지원합니다.</p>
+        <p>GitHub, GitLab, Bitbucket, Codeberg, Forgejo, Gitea 및 표준 HTTPS로 접근 가능한 모든 자체 구축 Git 서버를 지원합니다.</p>
       </details>
     </section>
 

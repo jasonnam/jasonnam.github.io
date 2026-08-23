@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Porcelain - The native Git client for iOS and macOS</title>
   <meta name="description" content="Porcelain is a clean, fast, and native Git client for iPhone, iPad, and Mac. Stage changes, inspect unified diffs, manage branches, and sync securely with on-device Keychain credentials." />
-  <meta name="keywords" content="Porcelain, Git client, iOS Git, macOS Git, mobile Git client, iPhone Git, iPad Git, libgit2, SSH Git client, GitHub, GitLab" />
+  <meta name="keywords" content="Porcelain, Git client, iOS Git, macOS Git, mobile Git client, iPhone Git, iPad Git, libgit2, GitHub, GitLab" />
 
   <!-- Canonical & Multi-Language SEO -->
   <link rel="canonical" href="https://jasonnam.com/apps/porcelain/" />
@@ -75,10 +75,10 @@
           },
           {
             "@type": "Question",
-            "name": "How are my SSH keys and tokens stored?",
+            "name": "How are my access tokens and credentials stored?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "All personal access tokens and SSH private keys are encrypted and stored exclusively on your device in Apple Keychain Services (kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly). They never leave your device."
+              "text": "All personal access tokens and credentials are encrypted and stored exclusively on your device in Apple Keychain Services (kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly). They never leave your device."
             }
           },
           {
@@ -494,11 +494,11 @@
         </article>
         <article data-component="feature-item">
           <h3 data-field="feature-title">Remote Sync & Escape Routes</h3>
-          <p data-field="feature-description">Fetch, pull, and push smoothly over HTTPS or SSH, with built-in non-fast-forward divergence escape routes.</p>
+          <p data-field="feature-description">Fetch, pull, and push smoothly over HTTPS, with built-in non-fast-forward divergence escape routes.</p>
         </article>
         <article data-component="feature-item">
           <h3 data-field="feature-title">On-Device Keychain Security</h3>
-          <p data-field="feature-description">Personal access tokens and SSH Ed25519/RSA keys are securely stored in your hardware Keychain and never leave your device.</p>
+          <p data-field="feature-description">Personal access tokens and credentials are securely stored in your hardware Keychain and never leave your device.</p>
         </article>
         <article data-component="feature-item">
           <h3 data-field="feature-title">iOS Files App Integration</h3>
@@ -515,7 +515,7 @@
     <section id="privacy-section">
       <div id="privacy-promise">
         <h3>Private by Design</h3>
-        <p>Porcelain connects directly to your Git servers over standard HTTPS and SSH protocols. No third-party servers, no analytics, no tracking, and no data collection.</p>
+        <p>Porcelain connects directly to your Git servers over standard HTTPS protocols. No third-party servers, no analytics, no tracking, and no data collection.</p>
       </div>
     </section>
 
@@ -524,10 +524,10 @@
       <h2 data-field="section-title">Frequently Asked Questions</h2>
       <details>
         <summary>Do I need an account to use Porcelain?</summary>
-        <p>No account or registration is required. You can clone and manage public repositories immediately, or connect your private accounts using your existing tokens or SSH keys.</p>
+        <p>No account or registration is required. You can clone and manage public repositories immediately, or connect your private accounts using your personal access tokens.</p>
       </details>
       <details>
-        <summary>How are my SSH keys and tokens secured?</summary>
+        <summary>How are my tokens and credentials secured?</summary>
         <p>All credentials reside strictly inside Apple's Keychain Services with device-only hardware protection (kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly).</p>
       </details>
       <details>
@@ -540,7 +540,7 @@
       </details>
       <details>
         <summary>Which Git hosting providers are supported?</summary>
-        <p>Porcelain works with GitHub, GitLab, Bitbucket, Codeberg, Forgejo, Gitea, and any custom self-hosted Git server accessible over HTTPS or SSH.</p>
+        <p>Porcelain works with GitHub, GitLab, Bitbucket, Codeberg, Forgejo, Gitea, and any custom self-hosted Git server accessible over HTTPS.</p>
       </details>
     </section>
 

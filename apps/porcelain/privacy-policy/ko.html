@@ -208,10 +208,10 @@
     <p>모든 저장소 파일, Git 객체, 커밋 기록, 브랜치 및 Diff 연산은 사용자의 로컬 기기 내에서만 처리됩니다. Porcelain은 사용자의 코드를 외부 중간 서버에 전송하거나 저장하지 않습니다.</p>
 
     <h2>2. 키체인 보안 및 자격 증명</h2>
-    <p>개인 액세스 토큰 및 SSH 개인 키는 Apple의 기기 내 키체인 서비스(<code>kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly</code>)를 통해 암호화되어 보관됩니다. 자격 증명은 설정된 Git 원격 서버와의 직접 인증 시에만 사용됩니다.</p>
+    <p>개인 액세스 토큰 및 인증 자격 증명은 Apple의 기기 내 키체인 서비스(<code>kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly</code>)를 통해 암호화되어 보관됩니다. 자격 증명은 설정된 Git 원격 서버와의 직접 인증 시에만 사용됩니다.</p>
 
     <h2>3. 직접 원격 통신</h2>
-    <p>저장소를 Clone, Fetch, Pull, Push할 때 Porcelain은 사용자가 설정한 Git 서비스(GitHub, GitLab, Bitbucket 또는 자체 구축 서버)와 HTTPS 또는 SSH를 통해 직접 통신하며, 제3자 프록시 서버를 경유하지 않습니다.</p>
+    <p>저장소를 Clone, Fetch, Pull, Push할 때 Porcelain은 사용자가 설정한 Git 서비스(GitHub, GitLab, Bitbucket 또는 자체 구축 서버)와 HTTPS를 통해 직접 통신하며, 제3자 프록시 서버를 경유하지 않습니다.</p>
 
     <h2>4. 사용자 추적 및 텔레메트리 부재</h2>
     <p>Porcelain에는 어떠한 분석 도구, 트래킹 스크립트, 광고 프레임워크도 포함되어 있지 않습니다. 사용자의 작업 내용과 사용 습관은 온전히 보호됩니다.</p>

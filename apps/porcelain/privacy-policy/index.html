@@ -208,10 +208,10 @@
     <p>All repository files, Git objects, commit histories, branches, and unified diff calculations remain strictly on your local device. Porcelain does not use any intermediate cloud servers to process or store your files.</p>
 
     <h2>2. Keychain Security & Credentials</h2>
-    <p>Personal access tokens and SSH private keys are encrypted and stored exclusively in Apple's on-device Keychain Services (<code>kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly</code>). They are only used to authenticate direct connections with your designated Git remotes.</p>
+    <p>Personal access tokens and authentication credentials are encrypted and stored exclusively in Apple's on-device Keychain Services (<code>kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly</code>). They are only used to authenticate direct connections with your designated Git remotes.</p>
 
     <h2>3. Direct Remote Communication</h2>
-    <p>When you clone, fetch, pull, or push, Porcelain communicates directly with your chosen Git hosting providers (such as GitHub, GitLab, Bitbucket, or self-hosted servers) over HTTPS or SSH. No traffic is routed through third-party proxy servers.</p>
+    <p>When you clone, fetch, pull, or push, Porcelain communicates directly with your chosen Git hosting providers (such as GitHub, GitLab, Bitbucket, or self-hosted servers) over HTTPS. No traffic is routed through third-party proxy servers.</p>
 
     <h2>4. No Telemetry or Tracking</h2>
     <p>Porcelain contains zero analytics SDKs, zero tracking scripts, zero telemetry, and zero advertising frameworks. Your usage habits and project information are completely private.</p>
