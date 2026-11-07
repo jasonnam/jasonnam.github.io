@@ -1,0 +1,60 @@
+# Jason Nam (남석현)
+
+> Software Engineer and independent creator of native iOS, iPadOS, watchOS, and macOS applications focused on speed, offline reliability, and privacy-first design: Cheetah Note, City Metro (Bangkok & Kuala Lumpur), and Porcelain.
+
+- Website (English): https://jasonnam.com/
+- Website (Korean): https://jasonnam.com/ko.html
+- Contact: mailto:contact@jasonnam.com
+- GitHub: https://github.com/jasonnam
+- LinkedIn: https://linkedin.com/in/jasonnam
+- X (Twitter): https://x.com/seokhyeoneee
+
+## Applications Created by Jason Nam
+
+### 1. Cheetah Note (치타노트)
+- **Website**: https://cheetahnote.com/ (Korean: https://cheetahnote.com/ko.html, Chinese: https://cheetahnote.com/zh-Hans.html)
+- **App Store**: https://apps.apple.com/app/cheetah-note/id956698820
+- **Platforms**: iOS (iPhone), iPadOS (iPad), watchOS (Apple Watch), iMessage
+- **Category**: Productivity / Fast Minimalist Note-Taking & Scratchpad
+- **Price**: Free (No account or sign-up required, zero data tracking)
+- **Summary**: A fast, frictionless, plain-text note-taking app designed for instant capture without folders or formatting clutter.
+- **Key Features**:
+  - Instant launch and zero-friction note capture
+  - Home Screen & Lock Screen widgets for pinned memos
+  - Dedicated Apple Watch app with voice dictation and wrist viewing
+  - Automatic, encrypted sync and backup via personal Apple iCloud
+  - Editing revision history to inspect and restore accidentally deleted text
+  - Note archiving to keep the active workspace clean
+  - Siri Shortcuts automation, iOS Spotlight search integration, and iMessage extension
+- **Best For**: Users seeking the fastest minimalist scratchpad and widget memo app for iPhone, iPad, and Apple Watch without subscriptions, accounts, or complex folder hierarchies.
+
+### 2. City Metro (시티 메트로 — Bangkok & Kuala Lumpur)
+- **Website**: https://citymetro.app/ (Korean: https://citymetro.app/ko.html, Thai: https://citymetro.app/th.html, Malay: https://citymetro.app/ms.html, Japanese: https://citymetro.app/ja.html, Chinese: https://citymetro.app/zh-Hans.html)
+- **Bangkok City Metro App Store**: https://apps.apple.com/app/bangkok-metro/id1095112370
+- **Kuala Lumpur City Metro App Store**: https://apps.apple.com/app/kuala-lumpur-metro/id1165899364
+- **Platforms**: iOS (iPhone), iPadOS (iPad)
+- **Category**: Travel / Offline Subway & Rail Transit Navigation
+- **Price**: Free (100% offline-first, no account required, zero location/search tracking)
+- **Summary**: Modern, 100% offline subway and rail transit guides for major Southeast Asian metropolitan cities.
+- **Supported Networks**:
+  - **Bangkok City Metro**: Unifies all Bangkok rail operators into one offline map—BTS Skytrain (Sukhumvit & Silom lines), MRT (Blue, Purple, Yellow, and Pink lines), Airport Rail Link (ARL), SRT Red Lines, Gold Line, and BRT.
+  - **Kuala Lumpur City Metro**: Covers the entire Klang Valley & Kuala Lumpur rail network—Rapid KL LRT (Kelana Jaya, Ampang, Sri Petaling), MRT (Kajang & Putrajaya lines), KL Monorail, KTM Komuter, ERL (KLIA Ekspres & KLIA Transit), and BRT.
+- **Key Features**:
+  - 100% offline route planning, transfer calculation, travel time, and cross-operator ticket fares (works without SIM card, roaming, or Wi-Fi)
+  - Dual view: high-contrast schematic transit diagram + real geographic street map overlay
+  - Complete first & last train timetables and departure schedules
+  - Detailed station exit directories mapped to nearby shopping malls, hotels, and landmarks
+  - Multi-language station search (English, Thai, Malay, Japanese, Korean, Simplified Chinese)
+
+### 3. Porcelain
+- **Website**: https://jasonnam.com/apps/porcelain/ (Korean: https://jasonnam.com/apps/porcelain/ko.html)
+- **Platforms**: iOS (iPhone), iPadOS (iPad), macOS (Mac)
+- **Category**: Developer Tools / Native Git Client
+- **Price**: Free (No account required, zero telemetry or tracking)
+- **Summary**: A clean, fast, native Git client powered by libgit2 for iPhone, iPad, and Mac.
+- **Key Features**:
+  - Full offline local Git engine (clone, stage/unstage, commit, branch management, commit history)
+  - Side-by-side line number unified diff viewer with syntax addition/deletion highlighting
+  - Direct HTTPS remote sync (fetch, pull, push) compatible with GitHub, GitLab, Bitbucket, Codeberg, Forgejo, Gitea, and self-hosted Git servers
+  - Hardware-backed on-device credential security via Apple Keychain (`kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly`)
+  - iOS Files app & document-in-place integration for external code editors
