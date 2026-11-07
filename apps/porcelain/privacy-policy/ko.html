@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>개인정보 처리방침 - Porcelain</title>
   <meta name="description" content="Porcelain의 개인정보 처리방침입니다. Porcelain은 사용자의 어떠한 개인정보, 소스 코드, 자격 증명도 수집, 추적 또는 공유하지 않습니다." />
 
@@ -32,10 +32,15 @@
   <meta name="twitter:image" content="https://jasonnam.com/apps/porcelain/assets/icon.png" />
 
   <style>
+    :root {
+      color-scheme: light dark;
+    }
+
     * {
       box-sizing: border-box;
     }
 
+    html,
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", Roboto, sans-serif;
@@ -62,7 +67,8 @@
     footer {
       max-width: 960px;
       margin: 0 auto;
-      padding: 0 1.25rem;
+      padding-left: calc(1.25rem + env(safe-area-inset-left, 0px));
+      padding-right: calc(1.25rem + env(safe-area-inset-right, 0px));
     }
 
     /* Top Bar */
@@ -107,7 +113,8 @@
 
     /* Content */
     main {
-      padding: 3.5rem 0 5rem;
+      padding-top: 3.5rem;
+      padding-bottom: 5rem;
       max-width: 720px;
     }
 
@@ -147,7 +154,7 @@
       flex-wrap: wrap;
       gap: 1rem;
       padding-top: 2rem;
-      padding-bottom: 2.5rem;
+      padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
       border-top: 1px solid #e5e5e5;
       font-size: 0.875rem;
       color: #555;
@@ -155,8 +162,16 @@
 
     footer nav {
       display: flex;
-      gap: 1.25rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
+      align-items: center;
+    }
+
+    footer nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 0.35rem 0.2rem;
     }
 
     footer p[data-field="copyright"] {
@@ -165,6 +180,7 @@
 
     /* Clean Dark Mode Support */
     @media (prefers-color-scheme: dark) {
+      html,
       body {
         background-color: #121212;
         color: #e5e5e5;
@@ -220,7 +236,6 @@
   <footer data-section="footer">
     <nav data-slot="footer-nav">
       <a href="../ko.html" data-field="footer-link">홈</a>
-      <a href="https://github.com/jasonnam/porcelain" target="_blank" rel="noopener noreferrer" data-field="footer-link">GitHub</a>
     </nav>
     <p data-field="copyright">&copy; 2026 Jason Nam. All rights reserved.</p>
   </footer>
