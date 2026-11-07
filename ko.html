@@ -13,18 +13,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>남석현</title>
-  <meta name="description" content="남석현">
+  <meta name="description" content="남석현 (Jason Nam) — 소프트웨어 엔지니어 및 앱 크리에이터. 빠른 아이폰·아이패드·애플워치 메모 및 위젯 앱 치타노트(Cheetah Note), 방콕·쿠알라룸푸르 100% 오프라인 지하철 노선도 앱 시티 메트로(City Metro), iOS·macOS 네이티브 Git 클라이언트 Porcelain을 만듭니다.">
   <meta name="author" content="남석현">
   <link rel="canonical" href="https://jasonnam.com/ko.html">
   <link rel="alternate" hreflang="en" href="https://jasonnam.com/">
   <link rel="alternate" hreflang="ko" href="https://jasonnam.com/ko.html">
   <link rel="alternate" hreflang="x-default" href="https://jasonnam.com/">
+  <link rel="alternate" type="text/markdown" href="https://jasonnam.com/llms.txt" title="LLM Context">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jasonnam.com/ko.html">
   <meta property="og:title" content="남석현">
-  <meta property="og:description" content="남석현">
+  <meta property="og:description" content="소프트웨어 엔지니어 — 치타노트(Cheetah Note), 시티 메트로(City Metro), Porcelain 개발자.">
   <meta property="og:image" content="https://jasonnam.com/android-chrome-384x384.png">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:locale:alternate" content="en_US">
@@ -34,7 +35,7 @@
   <meta name="twitter:site" content="@seokhyeoneee">
   <meta name="twitter:creator" content="@seokhyeoneee">
   <meta name="twitter:title" content="남석현">
-  <meta name="twitter:description" content="남석현">
+  <meta name="twitter:description" content="소프트웨어 엔지니어 — 치타노트(Cheetah Note), 시티 메트로(City Metro), Porcelain 개발자.">
   <meta name="twitter:image" content="https://jasonnam.com/android-chrome-384x384.png">
 
   <!-- Favicon & PWA -->
@@ -43,19 +44,21 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="manifest" href="manifest-ko.json">
   <link rel="shortcut icon" href="favicon.ico">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#08090d">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#06070b">
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc">
 
-  <!-- Google Fonts - Inter & Noto Sans KR -->
+  <!-- Fonts - Inter & Pretendard Variable -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="main.css?v=4.2">
+  <link rel="stylesheet" href="main.css?v=5.7">
   <style>
     :root {
-      --font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+      --font-family: "Pretendard Variable", Pretendard, 'Inter', -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
     }
   </style>
 
@@ -64,11 +67,13 @@
   {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": "https://jasonnam.com/#person",
     "name": "남석현",
     "alternateName": "Jason Nam",
     "url": "https://jasonnam.com/ko.html",
     "image": "https://jasonnam.com/android-chrome-384x384.png",
-    "jobTitle": "소프트웨어 엔지니어 & 크리에이터",
+    "jobTitle": "소프트웨어 엔지니어 & 앱 크리에이터",
+    "description": "빠르고 직관적인 iOS, iPadOS, watchOS, macOS 네이티브 앱 — 치타노트(Cheetah Note), 시티 메트로(City Metro), Porcelain을 만드는 소프트웨어 엔지니어입니다.",
     "email": "mailto:contact@jasonnam.com",
     "sameAs": [
       "https://github.com/jasonnam",
@@ -78,31 +83,57 @@
     "knowsAbout": [
       "Software Engineering",
       "iOS 개발",
-      "웹 개발",
-      "치타노트",
-      "시티 메트로"
+      "macOS 개발",
+      "치타노트 (Cheetah Note)",
+      "시티 메트로 (City Metro)",
+      "Porcelain"
     ],
     "creator": [
       {
         "@type": "SoftwareApplication",
         "name": "치타노트 (Cheetah Note)",
+        "alternateName": "Cheetah Note",
         "url": "https://cheetahnote.com/ko.html",
+        "downloadUrl": "https://apps.apple.com/app/cheetah-note/id956698820",
         "applicationCategory": "ProductivityApplication",
-        "operatingSystem": "iOS, macOS, Web"
+        "operatingSystem": "iOS, iPadOS, watchOS",
+        "description": "아이폰, 아이패드, 애플워치를 위한 빠르고 심플한 메모·위젯 앱. iCloud 자동 동기화, 홈·잠금화면 위젯, 수정 기록 복원을 지원합니다.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
       },
       {
         "@type": "SoftwareApplication",
         "name": "시티 메트로 (City Metro)",
+        "alternateName": ["City Metro", "방콕 시티 메트로", "쿠알라룸푸르 시티 메트로"],
         "url": "https://citymetro.app/ko.html",
+        "downloadUrl": [
+          "https://apps.apple.com/app/bangkok-metro/id1095112370",
+          "https://apps.apple.com/app/kuala-lumpur-metro/id1165899364"
+        ],
         "applicationCategory": "TravelApplication",
-        "operatingSystem": "iOS, Web"
+        "operatingSystem": "iOS, iPadOS",
+        "description": "방콕(BTS, MRT, ARL, SRT) 및 쿠알라룸푸르(LRT, MRT, 모노레일, KTM, ERL) 전 노선을 100% 오프라인으로 지원하는 지하철 노선도·경로·요금·시간표·출구 안내 앱입니다.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
       },
       {
         "@type": "SoftwareApplication",
         "name": "Porcelain",
         "url": "https://jasonnam.com/apps/porcelain/ko.html",
         "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "iOS, iPadOS, macOS"
+        "operatingSystem": "iOS, iPadOS, macOS",
+        "description": "libgit2 기반의 빠르고 안전한 iPhone, iPad, Mac용 네이티브 Git 클라이언트. 통합 Diff 뷰어, 인터랙티브 스테이징, 기기 내 키체인 보안을 지원합니다.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
       }
     ]
   }
@@ -115,8 +146,30 @@
   <!-- Noise Texture -->
   <div class="noise-overlay" aria-hidden="true"></div>
 
-  <!-- Top Right: Language Control -->
+  <!-- Top Right: Theme & Language Controls -->
   <header class="top-bar">
+    <!-- Theme Toggle: Icon-only [다크 | 라이트] -->
+    <div class="segmented-control theme-switch" role="group" aria-label="테마 선택">
+      <button type="button" class="lang-link theme-btn" data-theme-value="dark" aria-label="다크 모드" title="다크 모드">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+      <button type="button" class="lang-link theme-btn" data-theme-value="light" aria-label="라이트 모드" title="라이트 모드">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+    </div>
+
     <!-- Language Selector: [English | 한국어] -->
     <nav class="segmented-control lang-switch" aria-label="언어 선택">
       <a href="index.html" class="lang-link">English</a>
@@ -135,7 +188,7 @@
       <!-- Cheetah Note -->
       <a href="https://cheetahnote.com/ko.html" target="_blank" rel="noopener noreferrer" class="app-tile" data-app="cheetahnote" id="tile-cheetahnote">
         <div class="tile-icon-frame">
-          <img src="assets/cheetahnote.png" alt="치타노트" class="tile-icon-img" width="74" height="74" loading="eager" decoding="async">
+          <img src="assets/cheetahnote.png" alt="치타노트" class="tile-icon-img" width="76" height="76" loading="eager" decoding="async">
         </div>
         <span class="tile-label">치타노트</span>
       </a>
@@ -143,7 +196,7 @@
       <!-- City Metro -->
       <a href="https://citymetro.app/ko.html" target="_blank" rel="noopener noreferrer" class="app-tile" data-app="citymetro" id="tile-citymetro">
         <div class="tile-icon-frame">
-          <img src="assets/citymetro.png" alt="시티 메트로" class="tile-icon-img" width="74" height="74" loading="eager" decoding="async">
+          <img src="assets/citymetro.png" alt="시티 메트로" class="tile-icon-img" width="76" height="76" loading="eager" decoding="async">
         </div>
         <span class="tile-label">시티 메트로</span>
       </a>
@@ -151,10 +204,21 @@
       <!-- Porcelain -->
       <a href="apps/porcelain/ko.html" class="app-tile" data-app="porcelain" id="tile-porcelain">
         <div class="tile-icon-frame">
-          <img src="assets/porcelain.png" alt="Porcelain" class="tile-icon-img" width="74" height="74" loading="eager" decoding="async">
+          <img src="assets/porcelain.png" alt="Porcelain" class="tile-icon-img" width="76" height="76" loading="eager" decoding="async">
         </div>
         <span class="tile-label">Porcelain</span>
       </a>
+    </section>
+
+    <!-- Screen-Reader & AI Crawler Semantic Summary -->
+    <section class="sr-only" aria-label="남석현 및 대표 앱 소개">
+      <h2>남석현 (Jason Nam) 소개</h2>
+      <p>남석현(Jason Nam)은 빠른 실행 속도와 오프라인 사용성, 철저한 개인정보 보호에 집중하는 Apple 플랫폼 네이티브 앱 개발자입니다.</p>
+      <ul>
+        <li><strong>치타노트 (Cheetah Note)</strong>: 복잡한 폴더나 회원가입 없이 즉시 실행해 기록하는 아이폰·아이패드·애플워치 메모 앱입니다. 홈 화면 및 잠금 화면 위젯, iCloud 동기화, 수정 기록 복원, Siri 단축어를 무료로 제공합니다 (https://cheetahnote.com/ko.html).</li>
+        <li><strong>시티 메트로 (City Metro)</strong>: 유심이나 와이파이 없이 100% 오프라인으로 작동하는 방콕(BTS, MRT, 공항철도 ARL, SRT) 및 쿠알라룸푸르(LRT, MRT, 모노레일, KTM, ERL) 통합 지하철 노선도·환승 경로·요금·첫차/막차 시간표·출구 안내 앱입니다 (https://citymetro.app/ko.html).</li>
+        <li><strong>Porcelain</strong>: libgit2 엔진 기반의 iPhone, iPad, Mac용 네이티브 Git 클라이언트로 통합 Diff 뷰어, 파일별 스테이징, 브랜치 관리, iOS 파일 앱 연동 및 하드웨어 키체인 보안을 제공합니다 (https://jasonnam.com/apps/porcelain/ko.html).</li>
+      </ul>
     </section>
   </main>
 
@@ -162,7 +226,7 @@
   <footer class="bottom-social-bar" aria-label="소셜 링크">
     <!-- Email -->
     <a href="mailto:contact@jasonnam.com" class="social-link" aria-label="이메일" title="이메일">
-      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
         <polyline points="22,6 12,13 2,6"></polyline>
       </svg>
@@ -170,27 +234,27 @@
 
     <!-- LinkedIn -->
     <a href="https://linkedin.com/in/jasonnam" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn" title="LinkedIn">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
       </svg>
     </a>
 
     <!-- X (Twitter) -->
     <a href="https://x.com/seokhyeoneee" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X (Twitter)" title="X">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
       </svg>
     </a>
 
     <!-- GitHub -->
     <a href="https://github.com/jasonnam" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub" title="GitHub">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
         <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
       </svg>
     </a>
   </footer>
 
   <!-- Script -->
-  <script src="main.js?v=4.2"></script>
+  <script src="main.js?v=5.7"></script>
 </body>
 </html>

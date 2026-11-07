@@ -1,31 +1,50 @@
 /**
- * Clean & Subtle Interactive Starlight Canvas
- * Follows OS System Theme (Light/Dark) Automatically
- * 120Hz/ProMotion zero-stutter optimized
+ * Horizon Atmospheric Background & Theme Controller
+ * Bespoke Luxury Palette: Moonlight Silver-Blue, Deep Sapphire & Warm Champagne Pearl
+ * Wide-open planetary limb with slow, silky elliptical dawn ribbons
+ * Pure autonomous flow (no mouse tracking), 120Hz/ProMotion optimized
  * jasonnam.com
  */
 
 (function () {
   'use strict';
 
-  // ==========================================================================
-  // 1. System Theme Controller (Automatic OS Preference Follower)
-  // ==========================================================================
   const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+  const STORAGE_KEY = 'jn_theme';
 
-  // The media-scoped <meta name="theme-color"> tags handle Safari's chrome tint
-  // natively, so this only mirrors the preference onto the root element for CSS
-  // and for the canvas palette.
-  function applySystemTheme() {
-    document.documentElement.setAttribute('data-theme', prefersLight.matches ? 'light' : 'dark');
+  function getInitialTheme() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === 'light' || saved === 'dark') return saved;
+    return prefersLight.matches ? 'light' : 'dark';
   }
 
-  applySystemTheme();
-  prefersLight.addEventListener('change', applySystemTheme);
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    document.querySelectorAll('.theme-btn').forEach((btn) => {
+      const isMatch = btn.getAttribute('data-theme-value') === theme;
+      btn.classList.toggle('active', isMatch);
+      btn.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+    });
+  }
 
-  // ==========================================================================
-  // 2. Balanced Starlight Engine (Crisp, Visible, Serene)
-  // ==========================================================================
+  applyTheme(getInitialTheme());
+
+  prefersLight.addEventListener('change', (e) => {
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      applyTheme(e.matches ? 'light' : 'dark');
+    }
+  });
+
+  document.querySelectorAll('.theme-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const chosen = btn.getAttribute('data-theme-value');
+      if (chosen === 'light' || chosen === 'dark') {
+        localStorage.setItem(STORAGE_KEY, chosen);
+        applyTheme(chosen);
+      }
+    });
+  });
+
   const canvas = document.getElementById('glow-canvas');
   if (!canvas) return;
 
@@ -34,39 +53,12 @@
   let height = 0;
   let dpr = 1;
 
-  let particles = [];
-  const PARTICLE_COUNT = 130;
-
-  // Dark Mode: Soft Platinum & Silver
-  const darkColors = ['#ffffff', '#f1f5f9', '#e2e8f0', '#cbd5e1', '#94a3b8'];
-  // Light Mode: Clean Slate & Graphite
-  const lightColors = ['#1e293b', '#334155', '#475569', '#64748b', '#94a3b8'];
-
-  function initParticles() {
-    particles = [];
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      const colorIdx = Math.floor(Math.random() * darkColors.length);
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.22,
-        vy: (Math.random() - 0.5) * 0.22,
-        size: Math.random() * 1.2 + 0.8,
-        baseAlpha: Math.random() * 0.30 + 0.35,
-        darkColor: darkColors[colorIdx],
-        lightColor: lightColors[colorIdx]
-      });
-    }
-  }
-
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 3);
-    // Measure the element itself so the bitmap always matches the CSS box,
-    // including the large-viewport height that reaches under Safari's toolbars.
     const newWidth = canvas.clientWidth || window.innerWidth;
     const newHeight = canvas.clientHeight || window.innerHeight;
 
-    if (newWidth === width && newHeight === height && particles.length > 0) return;
+    if (newWidth === width && newHeight === height) return;
 
     width = newWidth;
     height = newHeight;
@@ -74,96 +66,168 @@
     canvas.height = Math.round(height * dpr);
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.scale(dpr, dpr);
-
-    if (particles.length === 0) {
-      initParticles();
-    }
   }
 
   window.addEventListener('resize', resize, { passive: true });
-  window.addEventListener('orientationchange', () => {
-    particles = [];
-    resize();
-  }, { passive: true });
+  window.addEventListener('orientationchange', resize, { passive: true });
 
-  // Mouse interaction (Restricted to mouse pointer to keep mobile touch smooth & serene)
-  const MOUSE_OFF = -9999;
-  let rawMouseX = MOUSE_OFF;
-  let rawMouseY = MOUSE_OFF;
+  /**
+   * Draws a soft elliptical atmospheric light ribbon that hugs the horizon curve
+   */
+  function drawHorizonRibbon(cx, cy, rx, ry, tiltRad, stops) {
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(tiltRad);
+    ctx.scale(1, ry / rx);
 
-  window.addEventListener('pointermove', (e) => {
-    if (e.pointerType && e.pointerType !== 'mouse') return;
-    rawMouseX = e.clientX;
-    rawMouseY = e.clientY;
-  }, { passive: true });
+    const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
+    for (let i = 0; i < stops.length; i++) {
+      grad.addColorStop(stops[i][0], stops[i][1]);
+    }
 
-  window.addEventListener('pointerleave', (e) => {
-    if (e.pointerType && e.pointerType !== 'mouse') return;
-    rawMouseX = MOUSE_OFF;
-    rawMouseY = MOUSE_OFF;
-  }, { passive: true });
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(0, 0, rx, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
 
-  // Animation Loop
+  function renderHorizon(t, isLight) {
+    const maxDim = Math.max(width, height);
+
+    // 1. Base Planetary Limb Arc (Moonlight Glacier Blue & Prussian Sapphire)
+    const limbBreath = Math.sin(t * 0.00018) * 0.045;
+    const limbSway = Math.cos(t * 0.00014) * (width * 0.08);
+    const globeX = width * 0.5 + limbSway;
+    const globeY = height * (1.38 + limbBreath);
+    const globeR = maxDim * 1.16;
+
+    const baseGlow = ctx.createRadialGradient(
+      globeX,
+      globeY,
+      globeR * 0.50,
+      globeX,
+      globeY,
+      globeR * 1.15
+    );
+
+    if (isLight) {
+      baseGlow.addColorStop(0, 'rgba(46, 102, 198, 0.56)');
+      baseGlow.addColorStop(0.34, 'rgba(84, 118, 206, 0.36)');
+      baseGlow.addColorStop(0.68, 'rgba(138, 166, 222, 0.18)');
+      baseGlow.addColorStop(1, 'rgba(240, 244, 249, 0)');
+    } else {
+      baseGlow.addColorStop(0, 'rgba(164, 194, 232, 0.22)');
+      baseGlow.addColorStop(0.32, 'rgba(72, 106, 168, 0.15)');
+      baseGlow.addColorStop(0.64, 'rgba(34, 48, 86, 0.075)');
+      baseGlow.addColorStop(1, 'rgba(5, 6, 9, 0)');
+    }
+
+    ctx.fillStyle = baseGlow;
+    ctx.fillRect(0, 0, width, height);
+
+    // 2. Ribbon A — Warm Champagne-Pearl Dawn Rim gliding slowly along the lower horizon
+    // Creates a refined warm-vs-cool twilight contrast against the sapphire sky
+    const phaseA = t * 0.00021;
+    const ribbonAX = width * 0.5 + Math.sin(phaseA) * (width * 0.34);
+    const ribbonAY = height * 0.87 + Math.cos(phaseA * 1.3) * (height * 0.055);
+    const tiltA = Math.sin(phaseA) * 0.12;
+
+    drawHorizonRibbon(
+      ribbonAX,
+      ribbonAY,
+      maxDim * 0.56,
+      maxDim * 0.27,
+      tiltA,
+      isLight
+        ? [
+            [0, 'rgba(226, 138, 56, 0.52)'],
+            [0.44, 'rgba(216, 158, 104, 0.28)'],
+            [1, 'rgba(240, 244, 249, 0)']
+          ]
+        : [
+            [0, 'rgba(232, 206, 172, 0.21)'],
+            [0.44, 'rgba(156, 184, 224, 0.11)'],
+            [1, 'rgba(5, 6, 9, 0)']
+          ]
+    );
+
+    // 3. Ribbon B — Counter-gliding Moonlight Steel-Sapphire Wave
+    const phaseB = t * 0.00017 + 1.4;
+    const ribbonBX = width * 0.5 - Math.sin(phaseB) * (width * 0.34);
+    const ribbonBY = height * 0.72 + Math.sin(phaseB * 1.2) * (height * 0.065);
+    const tiltB = -Math.sin(phaseB) * 0.14;
+
+    drawHorizonRibbon(
+      ribbonBX,
+      ribbonBY,
+      maxDim * 0.58,
+      maxDim * 0.31,
+      tiltB,
+      isLight
+        ? [
+            [0, 'rgba(38, 94, 198, 0.48)'],
+            [0.46, 'rgba(84, 118, 204, 0.26)'],
+            [1, 'rgba(240, 244, 249, 0)']
+          ]
+        : [
+            [0, 'rgba(128, 162, 218, 0.23)'],
+            [0.46, 'rgba(68, 92, 152, 0.10)'],
+            [1, 'rgba(5, 6, 9, 0)']
+          ]
+    );
+
+    // 4. Ribbon C — Slow Platinum-Violet Twilight Shimmer (bridges Center & Horizon)
+    const phaseC = t * 0.00014 + 3.1;
+    const pulseC = (Math.sin(t * 0.00024) + 1) * 0.5;
+    const ribbonCX = width * 0.5 + Math.cos(phaseC) * (width * 0.26);
+    const ribbonCY = height * 0.62 + Math.sin(phaseC) * (height * 0.06);
+    const tiltC = Math.cos(phaseC) * 0.10;
+
+    drawHorizonRibbon(
+      ribbonCX,
+      ribbonCY,
+      maxDim * (0.48 + pulseC * 0.08),
+      maxDim * 0.26,
+      tiltC,
+      isLight
+        ? [
+            [0, `rgba(92, 102, 198, ${(0.34 + pulseC * 0.12).toFixed(3)})`],
+            [0.5, `rgba(178, 114, 154, ${(0.19 + pulseC * 0.08).toFixed(3)})`],
+            [1, 'rgba(240, 244, 249, 0)']
+          ]
+        : [
+            [0, `rgba(188, 204, 232, ${(0.12 + pulseC * 0.06).toFixed(3)})`],
+            [0.5, `rgba(126, 136, 188, ${(0.06 + pulseC * 0.04).toFixed(3)})`],
+            [1, 'rgba(5, 6, 9, 0)']
+          ]
+    );
+
+    // 5. Soft Titanium Zenith Counter-Glow at Top
+    const topX = width * 0.5 + Math.cos(t * 0.00016) * (width * 0.22);
+    const topY = -height * 0.15 + Math.sin(t * 0.0002) * (height * 0.04);
+    const topGlow = ctx.createRadialGradient(topX, topY, 0, topX, topY, maxDim * 0.68);
+
+    if (isLight) {
+      topGlow.addColorStop(0, 'rgba(84, 138, 216, 0.38)');
+      topGlow.addColorStop(1, 'rgba(240, 244, 249, 0)');
+    } else {
+      topGlow.addColorStop(0, 'rgba(156, 172, 198, 0.075)');
+      topGlow.addColorStop(1, 'rgba(5, 6, 9, 0)');
+    }
+
+    ctx.fillStyle = topGlow;
+    ctx.fillRect(0, 0, width, height);
+  }
+
   let animId = null;
 
-  function render() {
+  function render(now) {
+    const t = now || performance.now();
     const isLight = document.documentElement.getAttribute('data-theme') === 'light';
 
-    ctx.globalCompositeOperation = 'source-over';
     ctx.clearRect(0, 0, width, height);
-
-    const mouseDistMax = 135;
-    const connectionDistMax = 85;
-    const lineCol = isLight ? '#475569' : '#cbd5e1';
-
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
-
-      p.x += p.vx;
-      p.y += p.vy;
-
-      if (p.x < -10) p.x = width + 10;
-      if (p.x > width + 10) p.x = -10;
-      if (p.y < -10) p.y = height + 10;
-      if (p.y > height + 10) p.y = -10;
-
-      // Mouse repulsion
-      if (rawMouseX !== MOUSE_OFF) {
-        const dx = p.x - rawMouseX;
-        const dy = p.y - rawMouseY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < mouseDistMax) {
-          const force = (1 - dist / mouseDistMax) * 1.8;
-          p.x += (dx / (dist || 1)) * force;
-          p.y += (dy / (dist || 1)) * force;
-        }
-      }
-
-      // Draw crisp, clearly visible star
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = isLight ? p.lightColor : p.darkColor;
-      ctx.globalAlpha = isLight ? p.baseAlpha * 0.80 : p.baseAlpha * 0.65;
-      ctx.fill();
-
-      // Draw delicate constellation links
-      for (let j = i + 1; j < particles.length; j++) {
-        const p2 = particles[j];
-        const dx = p.x - p2.x;
-        const dy = p.y - p2.y;
-        const d = Math.sqrt(dx * dx + dy * dy);
-
-        if (d < connectionDistMax) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.strokeStyle = lineCol;
-          ctx.globalAlpha = (1 - d / connectionDistMax) * (isLight ? 0.14 : 0.11);
-          ctx.lineWidth = 0.7;
-          ctx.stroke();
-        }
-      }
-    }
+    renderHorizon(t, isLight);
 
     animId = requestAnimationFrame(render);
   }
