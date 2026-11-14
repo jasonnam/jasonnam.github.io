@@ -48,6 +48,7 @@
 
 ### 3. Porcelain
 - **Website**: https://jasonnam.com/apps/porcelain/ (Korean: https://jasonnam.com/apps/porcelain/ko.html)
+- **App Store**: https://apps.apple.com/app/porcelain-git/id1161732225
 - **Platforms**: iOS (iPhone), iPadOS (iPad), macOS (Mac)
 - **Category**: Developer Tools / Native Git Client
 - **Price**: Free (No account required, zero telemetry or tracking)
