@@ -10,40 +10,6 @@
   'use strict';
 
   const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
-  const STORAGE_KEY = 'jn_theme';
-
-  function getInitialTheme() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === 'light' || saved === 'dark') return saved;
-    return prefersLight.matches ? 'light' : 'dark';
-  }
-
-  function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    document.querySelectorAll('.theme-btn').forEach((btn) => {
-      const isMatch = btn.getAttribute('data-theme-value') === theme;
-      btn.classList.toggle('active', isMatch);
-      btn.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
-    });
-  }
-
-  applyTheme(getInitialTheme());
-
-  prefersLight.addEventListener('change', (e) => {
-    if (!localStorage.getItem(STORAGE_KEY)) {
-      applyTheme(e.matches ? 'light' : 'dark');
-    }
-  });
-
-  document.querySelectorAll('.theme-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const chosen = btn.getAttribute('data-theme-value');
-      if (chosen === 'light' || chosen === 'dark') {
-        localStorage.setItem(STORAGE_KEY, chosen);
-        applyTheme(chosen);
-      }
-    });
-  });
 
   const canvas = document.getElementById('glow-canvas');
   if (!canvas) return;
@@ -224,7 +190,7 @@
 
   function render(now) {
     const t = now || performance.now();
-    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const isLight = prefersLight.matches;
 
     ctx.clearRect(0, 0, width, height);
     renderHorizon(t, isLight);

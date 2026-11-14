@@ -30,7 +30,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="main.css?v=5.7">
+  <link rel="stylesheet" href="main.css?v=6.3">
   <style>
     .error-code {
       font-size: clamp(2rem, 5vw, 3rem);
@@ -40,8 +40,10 @@
       line-height: 1;
       text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
     }
-    html[data-theme="light"] .error-code {
-      text-shadow: none;
+    @media (prefers-color-scheme: light) {
+      .error-code {
+        text-shadow: none;
+      }
     }
   </style>
 </head>
@@ -58,6 +60,6 @@
     </div>
   </main>
 
-  <script src="main.js?v=5.7"></script>
+  <script src="main.js?v=5.8"></script>
 </body>
 </html>
